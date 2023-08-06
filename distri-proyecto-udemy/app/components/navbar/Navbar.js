@@ -6,11 +6,13 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import UserMenu from "./UserMenu";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Navbar({ myUser = null, basketItems = {} }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const { data: session } = useSession();
 
   const router = useRouter();
 
@@ -29,13 +31,15 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
               <img src="/logo.svg" alt="logo" width={91} height={34}></img>
             </Link>
 
+            <div className="text-sm text-gray-600">Categorias</div>
+
             <form
               className="hidden lg:flex-1 lg:flex"
               onSubmit={() => console.log("submit")}
             >
               <input
                 type="text"
-                placeholder="Search for anything ..."
+                placeholder="Busca cualquier cosa ..."
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="
                         w-full p-3 font-light bg-white rounded-full border-black border-[1px] outline-none
@@ -50,7 +54,7 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
             </div>
 
             <div className="text-black">
-              <div onClick={myUser ? signIn() : null}>Teach on Udemy</div>
+              <div onClick={myUser ? signIn() : null}>Enseña en Udemy</div>
             </div>
 
             <div className="relative">
@@ -64,41 +68,44 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
           </div>
 
           <div className="flex items-center gap-3">
-            {!myUser && (
+            {!session && (
               <>
                 <div>
                   <button
-                    onClick={() => signOut()}
-                    className="py-2 px-6 border-black border-[1px] text-black"
+                    onClick={() => signIn()}
+                    className="py-2 px-6 border-black border-[1px] text-black font-bold"
                   >
-                    Login
+                    Iniciar sesión
                   </button>
                 </div>
 
                 <div>
                   <button
-                    className="py-2 px-6 bg-black text-white border-[1px] border-black"
+                    className="py-2 px-6 bg-black text-white border-[1px] border-black font-semibold"
                     onClick={() => signIn()}
                   >
-                    Sign up
+                    Regístrate
                   </button>
                 </div>
               </>
             )}
 
-            {myUser && (
+            {session && (
               <div
                 className="w-[40px] h-[40px] rounded-full bg-black flex items-center justify-center text-white cursor-pointer"
                 onClick={() => setUserMenuOpen((prev) => !prev)}
               >
-                <span>{myUser?.name.at(0)?.toUpperCase()}</span>
-                <span>{myUser?.name.at(1)?.toUpperCase()}</span>
+                <span>{session.user?.name.at(0)?.toUpperCase()}</span>
+                <span>{session.user?.name.at(1)?.toUpperCase()}</span>
               </div>
             )}
 
             {userMenuOpen && (
               <div className="absolute bottom-0 top-20 right-20">
-                <UserMenu currentUser={myUser} closeUserMenu={closeUserMenu} />
+                <UserMenu
+                  currentUser={session.user}
+                  closeUserMenu={closeUserMenu}
+                />
               </div>
             )}
           </div>

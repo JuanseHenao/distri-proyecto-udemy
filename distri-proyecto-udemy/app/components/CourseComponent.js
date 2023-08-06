@@ -7,7 +7,6 @@ export default function CourseComponent({ data }) {
   const router = useRouter();
 
   const courseId = data.sys.id;
-  console.log(data);
   return (
     <div className="pt-4" onClick={() => router.push(`/course/${courseId}`)}>
       <div className="flex flex-col w-[300px] p-2 relative">

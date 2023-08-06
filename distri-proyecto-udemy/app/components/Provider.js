@@ -2,8 +2,12 @@
 
 import { SessionProvider } from "next-auth/react";
 
-const Provider = ({ children }) => {
-  return <SessionProvider>{children}</SessionProvider>;
+const Provider = ({ session, children }) => {
+  return (
+    <SessionProvider session={session} refetchInterval={5 * 60}>
+      {children}
+    </SessionProvider>
+  );
 };
 
 export default Provider;

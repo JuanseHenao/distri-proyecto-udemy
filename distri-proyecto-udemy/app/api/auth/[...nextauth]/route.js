@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   providers: [
@@ -8,20 +9,16 @@ export const authOptions = {
       clientSecret: process.env.NEXT_PUBLIC_COGNITO_CLIENT_SECRET,
       issuer: process.env.NEXT_PUBLIC_COGNITO_DOMAIN,
     }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET,
+    }),
   ],
+  theme: {
+    colorScheme: "light",
+  },
 };
 
-/* export const authOptions = {
-  providers: [
-    CognitoProvider({
-      clientId: "ioip9fr8p7tkgtmpltbrik439",
-      clientSecret: "csmucjlv12vrdep3iuhao2e2emfspg73c2oaa565vr31hdjdqro",
-      issuer:
-        "https://attack-helicopters.auth.sa-east-1.amazoncognito.com/",
-    })
-  ]
-};
- */
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

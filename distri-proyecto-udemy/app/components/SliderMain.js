@@ -37,10 +37,11 @@ export default function SliderMain({ images = [] }) {
         {current === 1 && (
           <div className="absolute top-[20%] left-[5%] bg-white p-6 max-w-[450px]">
             <h1 className="my-4 text-[2rem] font-bold">
-              Learning that gets you
+              Un aprendizaje interesante
             </h1>
             <h4 className="text-[1.2rem]">
-              Skills for your present (and your future). Get started with us.
+              Habilidades para tu presente (y tu futuro). Da tus primeros pasos
+              con nosotros.
             </h4>
           </div>
         )}
@@ -48,11 +49,11 @@ export default function SliderMain({ images = [] }) {
         {current === 0 && (
           <div className="absolute top-[20%] left-[5%] bg-white p-6 max-w-[450px]">
             <h1 className="my-4 text-[2rem] font-bold">
-              Unlock the power of your people
+              Crea equipos preparados para todo
             </h1>
             <h4 className="text-[1.2rem]">
-              Udemy Business is trusted by 12.5K+ companies around the world.
-              Find out what we can do for yours.
+              Descubre por qué las empresas líderes deciden aprender con Udemy
+              Business.
             </h4>
           </div>
         )}
