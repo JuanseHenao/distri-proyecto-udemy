@@ -26,8 +26,6 @@ export async function getStaticProps() {
 export default function Home({ entries, session }) {
   const images = ["/a.jpg", "b.jpg"];
 
-  console.log(process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN);
-
   return (
     <main className="w-[100%]">
       <SessionProvider session={session}>
