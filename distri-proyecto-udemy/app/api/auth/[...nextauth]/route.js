@@ -7,8 +7,8 @@ export const authOptions = {
       clientId: process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_COGNITO_CLIENT_SECRET,
       issuer: process.env.NEXT_PUBLIC_COGNITO_DOMAIN,
-    })
-  ]
+    }),
+  ],
 };
 
 /* export const authOptions = {

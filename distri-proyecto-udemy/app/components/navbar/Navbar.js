@@ -25,7 +25,7 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
       <div className="p-3 px-4">
         <div className="flex items-center justify-between gap-2">
           <div className="relative flex items-center flex-1 gap-6">
-            <Link href="#">
+            <Link href="/">
               <img src="/logo.svg" alt="logo" width={91} height={34}></img>
             </Link>
 

@@ -1,29 +1,17 @@
-import client from "../../contentful";
 import CourseComponent from "./CourseComponent";
 
-export async function getStaticProps() {
-  const courses = await client.getEntries({
-    content_type: "course",
-  });
-
-  console.log("HOLA");
-
-  return {
-    props: {
-      courses: courses.items,
-    },
-  };
-}
-
-export default function Courses({ courses }) {
+export default function Courses({ courses = [] }) {
   return (
-    <div className="flex flex-wrap w-full h-48 px-8 text-black bg-white">
-      {courses?.map((item) => (
-        <div>
-          fdjfbhdjkslbn
-          <CourseComponent key={item.id} data={item} currentUser={user} />
-        </div>
-      ))}
+    <div>
+      <div className="pt-10 pl-10 font-serif text-3xl">Lets start learning</div>
+      <div className="pl-10 text-xl -pt-5">
+        {courses.length + " courses available"}
+      </div>
+      <div className="flex flex-wrap w-full h-48 px-8 text-black bg-white">
+        {courses?.map((item, key) => (
+          <CourseComponent key={key} data={item} currentUser={null} />
+        ))}
+      </div>
     </div>
   );
 }
