@@ -6,9 +6,7 @@ import client from "../contentful";
 import Navbar from "@/app/components/navbar/Navbar";
 import SliderMain from "@/app/components/SliderMain";
 import Courses from "@/app/components/Courses";
-import Provider from "@/app/components/Provider";
 import { SessionProvider } from "next-auth/react";
-import Image from "next/image";
 import Footer from "@/app/components/Footer";
 
 export async function getStaticProps() {

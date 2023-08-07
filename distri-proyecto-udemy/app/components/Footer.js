@@ -1,37 +1,37 @@
 export default function Footer() {
   return (
-    <footer class="bg-white dark:bg-black mt-44 pb-5">
-      <div class="container px-6 py-4 mx-auto">
-        <div class="grid grid-cols-2 gap-6 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+    <footer className="pb-5 bg-white dark:bg-black mt-44">
+      <div className="container px-6 py-4 mx-auto">
+        <div className="grid grid-cols-2 gap-6 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           <div>
-            <div class="flex flex-col items-start mt-4 space-y-2">
+            <div className="flex flex-col items-start mt-4 space-y-2">
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Udemy Business
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Enseña en Udemy
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Consigue las aplicación
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 ¿Quíenes somos?
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Ponte en contacto con nosotros
               </a>
@@ -39,34 +39,34 @@ export default function Footer() {
           </div>
 
           <div>
-            <div class="flex flex-col items-start mt-4 space-y-2">
+            <div className="flex flex-col items-start mt-4 space-y-2">
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Empleo
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Blog
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Ayuda y asistencia
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Afiliado
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Inversores
               </a>
@@ -74,34 +74,34 @@ export default function Footer() {
           </div>
 
           <div>
-            <div class="flex flex-col items-start mt-4 space-y-2">
+            <div className="flex flex-col items-start mt-4 space-y-2">
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Condiciones
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Política de privacidad
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Configuración de cookiees
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Mapa del sitio
               </a>
               <a
                 href="#"
-                class="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
+                className="text-gray-700 transition-colors duration-200 dark:text-gray-200 dark:hover:text-blue-400 hover:underline hover:text-blue-600"
               >
                 Declaración de accesibilidad
               </a>
@@ -109,12 +109,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div class="flex flex-col items-center justify-between sm:flex-row mt-9">
+        <div className="flex flex-col items-center justify-between sm:flex-row mt-9">
           <a href="/">
-            <img class="w-auto h-7" src="/logo-udemy-inverted.svg" alt="" />
+            <img className="w-auto h-7" src="/logo-udemy-inverted.svg" alt="" />
           </a>
 
-          <p class="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-300">
+          <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-300">
             © 2023 Udemy, Inc.
           </p>
         </div>

@@ -6,7 +6,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import UserMenu from "./UserMenu";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 export default function Navbar({ myUser = null, basketItems = {} }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
