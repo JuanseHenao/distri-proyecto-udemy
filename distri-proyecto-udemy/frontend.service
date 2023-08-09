@@ -1,0 +1,14 @@
+[Unit]
+Description=frontend web app service
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/distri-proyecto-udemy/distri-proyecto-udemy/
+ExecStart=/usr/bin/npm run dev
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
