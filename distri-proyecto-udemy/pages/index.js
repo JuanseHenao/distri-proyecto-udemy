@@ -23,7 +23,10 @@ export async function getStaticProps() {
 }
 
 export default function Home({ entries, session }) {
-  const images = ["/a.jpg", "b.jpg"];
+  const images = [
+    "https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/a.jpg",
+    "https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/b.jpg",
+  ];
 
   return (
     <>
@@ -53,14 +56,38 @@ export default function Home({ entries, session }) {
                 mundo confían en nosotros
               </div>
               <div className="flex flex-wrap justify-between space-x-16 space-y-5">
-                <img src="volkswagen.svg" className="" />
-                <img src="samsung.svg" className="" />
-                <img src="cisco.svg" className="" />
-                <img src="att.svg" className="" />
-                <img src="procter_gamble.svg" className="" />
-                <img src="hewlett_packard_enterprise.svg" className="" />
-                <img src="citi.svg" className="" />
-                <img src="ericsson.svg" className="" />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/volkswagen.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/samsung.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/cisco.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/att.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/procter_gamble.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/hewlett_packard_enterprise.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/citi.svg"
+                  className=""
+                />
+                <img
+                  src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/ericsson.svg"
+                  className=""
+                />
               </div>
             </div>
           </div>

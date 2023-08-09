@@ -28,7 +28,12 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
         <div className="flex items-center justify-between gap-2">
           <div className="relative flex items-center flex-1 gap-6">
             <Link href="/">
-              <img src="/logo.svg" alt="logo" width={91} height={34}></img>
+              <img
+                src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/logo.svg"
+                alt="logo"
+                width={91}
+                height={34}
+              ></img>
             </Link>
 
             <div className="text-sm text-gray-600">Categorias</div>

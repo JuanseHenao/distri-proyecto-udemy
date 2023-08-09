@@ -151,11 +151,26 @@ export default function IndividualCourse({ entry, session }) {
                   mundo. Más información
                 </div>
                 <div className="flex flex-wrap justify-between space-x-16 space-y-5">
-                  <img src="/nasdaq-dark.svg" className="" />
-                  <img src="/volkswagen.svg" className="" />
-                  <img src="/box-dark.svg" className="" />
-                  <img src="/netapp-dark.svg" className="" />
-                  <img src="/eventbrite-dark.svg" className="" />
+                  <img
+                    src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/nasdaq-dark.svg"
+                    className=""
+                  />
+                  <img
+                    src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/volkswagen.svg"
+                    className=""
+                  />
+                  <img
+                    src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/box-dark.svg"
+                    className=""
+                  />
+                  <img
+                    src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/netapp-dark.svg"
+                    className=""
+                  />
+                  <img
+                    src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/eventbrite-dark.svg"
+                    className=""
+                  />
                 </div>
               </div>
             </div>

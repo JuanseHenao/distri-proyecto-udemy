@@ -111,7 +111,11 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between sm:flex-row mt-9">
           <a href="/">
-            <img className="w-auto h-7" src="/logo-udemy-inverted.svg" alt="" />
+            <img
+              className="w-auto h-7"
+              src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/logo-udemy-inverted.svg"
+              alt=""
+            />
           </a>
 
           <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-300">
