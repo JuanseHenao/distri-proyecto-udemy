@@ -57,12 +57,7 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
         process.env.NEXT_PUBLIC_BACKEND_URL +
           "/customer/" +
           sessionInfo.user.email +
-          "/purchases",
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000", // Origen permitido (debe estar configurado en el servidor)
-          },
-        }
+          "/purchases"
       )
       .then((response) => {
         setPurchasesData(response.data);
