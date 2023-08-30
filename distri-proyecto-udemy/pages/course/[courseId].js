@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import PurchaseModal from "../../app/components/PurchaseModal";
 import ActionButtons from "@/app/components/ActionButtons";
 import RateModal from "@/app/components/RateModal";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
@@ -266,6 +266,8 @@ export default function IndividualCourse({ entry, session, reviews }) {
           isOpen={isRatingModalOpen}
           onClose={closeRatingModal}
           course={entry}
+          setRefreshData={setRefreshData}
+          refreshData={refreshData}
         />
         <ToastContainer position="bottom-right" />
       </SessionProvider>
