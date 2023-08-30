@@ -55,36 +55,6 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
     if (session != null) {
       getData(session);
     }
-    /*   if (session != null) {
-      //Get All User Purchases
-      axios
-        .get(
-          process.env.NEXT_PUBLIC_BACKEND_URL +
-            "/customer/" +
-            session.user.email +
-            "/purchases"
-        )
-        .then((response) => {
-          setPurchasesData(response.data);
-        })
-        .catch((error) => {
-          console.error("Error al obtener las calificaciones:", error);
-        });
-      // Get All User Reviews
-      axios
-        .get(
-          process.env.NEXT_PUBLIC_BACKEND_URL +
-            "/customer/" +
-            session.user.email +
-            "/reviews"
-        )
-        .then((response) => {
-          setAllUserReviews(response.data);
-        })
-        .catch((error) => {
-          console.error("Error al obtener las calificaciones:", error);
-        });
-    } */
   }, [session]);
 
   const getData = async (sessionInfo) => {
@@ -107,19 +77,19 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
         console.error("Error al obtener las calificaciones:", error);
       });
     // Get All User Reviews
-    // await axios
-    //   .get(
-    //     process.env.NEXT_PUBLIC_BACKEND_URL +
-    //       "/customer/" +
-    //       sessionInfo.user.email +
-    //       "/reviews"
-    //   )
-    //   .then((response) => {
-    //     setAllUserReviews(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error al obtener las calificaciones:", error);
-    //   });
+    await axios
+      .get(
+        process.env.NEXT_PUBLIC_BACKEND_URL +
+          "/customer/" +
+          sessionInfo.user.email +
+          "/reviews"
+      )
+      .then((response) => {
+        setAllUserReviews(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener las calificaciones:", error);
+      });
   };
 
   const hasCourse = () => {
