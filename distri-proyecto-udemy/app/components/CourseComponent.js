@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import ReactStars from "react-stars";
 
-export default function CourseComponent({ data }) {
+export default function CourseComponent({ data, review = 0 }) {
   const router = useRouter();
 
   const courseId = data.sys.id;
@@ -26,6 +27,13 @@ export default function CourseComponent({ data }) {
             <span className="text-gray-400 block text-[12px] font-normal">
               {data.fields.author}
             </span>
+            <ReactStars
+              count={5}
+              size={23}
+              color2={"#ffd700"}
+              value={review}
+              edit={false}
+            />
             <span className="text-black">$ {data?.fields?.price}</span>
           </div>
         </div>

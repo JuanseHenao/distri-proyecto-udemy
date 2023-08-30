@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 export const User = [
   {
     name: "My learning",
-    link: "/",
+    link: "/my_learning",
   },
 
   {

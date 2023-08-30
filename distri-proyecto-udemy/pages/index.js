@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import "tailwindcss/tailwind.css";
 import client from "../contentful";
@@ -9,20 +7,60 @@ import Courses from "@/app/components/Courses";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 import Footer from "@/app/components/Footer";
+import axios from "axios";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const entries = await client.getEntries({
     content_type: "course",
   });
 
+  const jsonData = [
+    {
+      cms_id: "7Lv2QERBsvpMuY9LoP8LWi",
+      user_token: "valor_del_user_token_1",
+      review_score: "1",
+    },
+    {
+      cms_id: "1Ye5GhHwefXf4bWW5ouTLJ",
+      user_token: "valor_del_user_token_2",
+      review_score: "2",
+    },
+    {
+      cms_id: "RtOOQEpRVwTw3KrpUS6xK",
+      user_token: "valor_del_user_token_3",
+      review_score: "3",
+    },
+    {
+      cms_id: "5p9TJ27xsMmPIQWZIjThGv",
+      user_token: "valor_del_user_token_4",
+      review_score: "4",
+    },
+    {
+      cms_id: "7vJhjZO9cjQejJRaRbrRfO",
+      user_token: "valor_del_user_token_5",
+      review_score: "5",
+    },
+  ];
+
+  let reviews = [];
+  await axios
+    .get(process.env.NEXT_PUBLIC_BACKEND_URL + "/reviews")
+    .then((response) => {
+      reviews = response.data;
+    })
+    .catch((error) => {
+      console.error("Error al obtener las calificaciones:", error);
+    });
+
   return {
     props: {
       entries: entries.items,
+      reviews: reviews,
     },
   };
 }
 
-export default function Home({ entries, session }) {
+export default function Home({ entries, reviews, session }) {
   const images = [
     "https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/a.jpg",
     "https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/b.jpg",
@@ -45,7 +83,7 @@ export default function Home({ entries, session }) {
                     });
                 `}
       </Script>
-      <main className="w-[100%]">
+      <main className="flex flex-col w-full">
         <SessionProvider session={session}>
           <Navbar />
           <SliderMain images={images} />
@@ -55,7 +93,7 @@ export default function Home({ entries, session }) {
                 Más de 14.400 empresas y millones de estudiantes de todo el
                 mundo confían en nosotros
               </div>
-              <div className="flex flex-wrap justify-between space-x-16 space-y-5">
+              <div className="flex flex-wrap justify-between mx-8 space-x-16 space-y-5">
                 <img
                   src="https://udemybucketeia.s3.sa-east-1.amazonaws.com/static/volkswagen.svg"
                   className=""
@@ -91,7 +129,7 @@ export default function Home({ entries, session }) {
               </div>
             </div>
           </div>
-          <Courses courses={entries} />
+          <Courses courses={entries} allReviews={reviews} />
           <Footer />
         </SessionProvider>
       </main>

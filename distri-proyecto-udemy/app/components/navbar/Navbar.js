@@ -62,14 +62,14 @@ export default function Navbar({ myUser = null, basketItems = {} }) {
               <div onClick={myUser ? signIn() : null}>Enseña en Udemy</div>
             </div>
 
-            <div className="relative">
+            {/* <div className="relative">
               <Link href="/basket">
                 <MdOutlineShoppingCart className="w-10 text-black h-9" />
               </Link>
               <div className="absolute flex items-center justify-center w-5 h-5 text-white bg-blue-500 rounded-full -right-1 -bottom-2">
                 {basketItems.length}1
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex items-center gap-3">

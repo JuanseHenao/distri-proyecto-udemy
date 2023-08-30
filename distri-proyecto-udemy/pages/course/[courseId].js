@@ -5,46 +5,67 @@ import Image from "next/image";
 import Footer from "@/app/components/Footer";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
+import ReactStars from "react-stars";
+import React, { useState } from "react";
+import PurchaseModal from "../../app/components/PurchaseModal";
+import ActionButtons from "@/app/components/ActionButtons";
+import RateModal from "@/app/components/RateModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
-export async function getStaticPaths() {
-  try {
-    const response = await client.getEntries({
-      content_type: "course", // Cambia por el tipo correcto en Contentful
-    });
-
-    const paths = response.items.map((item) => ({
-      params: { courseId: item.sys.id }, // Cambia por el nombre del campo de slug en Contentful
-    }));
-
-    return { paths, fallback: false };
-  } catch (error) {
-    console.error("Error fetching Contentful entries:", error);
-    return { paths: [], fallback: false };
-  }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(context) {
+  const { params } = context;
   const courseId = params.courseId;
 
-  try {
-    const entry = await client.getEntry(courseId);
+  const entry = await client.getEntry(courseId);
 
-    return {
-      props: {
-        entry,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching Contentful entry:", error);
-    return {
-      props: {
-        entry: null,
-      },
-    };
-  }
+  let reviews = [];
+  await axios
+    .get(process.env.NEXT_PUBLIC_BACKEND_URL + "/reviews")
+    .then((response) => {
+      reviews = response.data;
+    })
+    .catch((error) => {
+      console.error("Error al obtener las calificaciones:", error);
+    });
+
+  return {
+    props: {
+      reviews: reviews,
+      entry: entry,
+    },
+  };
 }
 
-export default function IndividualCourse({ entry, session }) {
+export default function IndividualCourse({ entry, session, reviews }) {
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
+
+  const buyCourse = () => {
+    setIsPurchaseModalOpen(true);
+  };
+
+  const rateCourse = () => {
+    setIsRatingModalOpen(true);
+  };
+
+  const openPurchaseModal = () => {
+    setIsPurchaseModalOpen(true);
+  };
+
+  const closePurchaseModal = () => {
+    setIsPurchaseModalOpen(false);
+  };
+
+  const openRatingModal = () => {
+    setIsRatingModalOpen(true);
+  };
+
+  const closeRatingModal = () => {
+    setIsRatingModalOpen(false);
+  };
+
   return (
     <>
       <Script
@@ -65,7 +86,7 @@ export default function IndividualCourse({ entry, session }) {
       <SessionProvider session={session}>
         <Navbar />
         <div className="relative">
-          <div className="absolute p-1 mt-10 ml-10 text-black bg-white shadow-md right-10 w-fit min-w-fit">
+          <div className="absolute hidden p-1 mt-10 ml-10 text-black bg-white shadow-md right-10 w-fit min-w-fit md:block">
             <Image
               width={250}
               height={250}
@@ -77,12 +98,14 @@ export default function IndividualCourse({ entry, session }) {
               {entry.fields.price} COL$
             </h1>
             <div className="p-3 space-y-3">
-              <button className="w-full py-3 font-bold text-white bg-purple-500 cursor-pointer hover:bg-purple-900">
+              {/* <button className="w-full py-3 font-bold text-white bg-purple-500 cursor-pointer hover:bg-purple-900">
                 Añadir a la cesta
-              </button>
-              <button className="w-full py-3 font-bold text-black border border-black cursor-pointer border-3">
-                Comprar ahora
-              </button>
+              </button> */}
+              <ActionButtons
+                buyCourse={buyCourse}
+                course={entry}
+                rateCourse={rateCourse}
+              />
               <div className="text-xs text-center">
                 Garantía de reembolso de 30 días
               </div>
@@ -105,10 +128,21 @@ export default function IndividualCourse({ entry, session }) {
             </div>
           </div>
           <div className="flex justify-center w-full text-white bg-black">
-            <div className="flex justify-start w-4/5 m-6 mx-20 mt-10">
-              <div className="flex flex-col w-2/5 mb-6 mr-10 space-y-3 lg:w-2/3">
+            <div className="flex justify-start m-6 mx-20 mt-10 md:w-4/5">
+              <div className="flex flex-col mb-6 space-y-3 md:mr-10 md:w-2/5 lg:w-2/3">
                 <div className="text-3xl font-bold">{entry.fields.title}</div>
                 <div className="text-lg">{entry.fields.description}</div>
+                <ReactStars
+                  count={5}
+                  size={23}
+                  color2={"#ffd700"}
+                  value={
+                    reviews?.find(
+                      (review) => review.course_cms_id === entry.sys.id
+                    )?.review_score || 0
+                  }
+                  edit={false}
+                />
                 <div className="text-md">
                   Creado por
                   <span className="font-bold">{" " + entry.fields.author}</span>
@@ -116,9 +150,50 @@ export default function IndividualCourse({ entry, session }) {
               </div>
             </div>
           </div>
+          <div className="flex flex-col items-center justify-center w-full p-1 mt-10 text-black bg-white shadow-md md:hidden">
+            <Image
+              width={250}
+              height={250}
+              src={"https:" + entry.fields.preview.fields.file.url}
+              alt="Image"
+              className="object-cover w-[320px] h-[150px]"
+            />
+            <h1 className="p-3 text-4xl font-semibold">
+              {entry.fields.price} COL$
+            </h1>
+            <div className="p-3 space-y-3">
+              {/* <button className="w-full py-3 font-bold text-white bg-purple-500 cursor-pointer hover:bg-purple-900">
+                Añadir a la cesta
+              </button> */}
+              <ActionButtons
+                buyCourse={buyCourse}
+                course={entry}
+                rateCourse={rateCourse}
+              />
+              <div className="text-xs text-center">
+                Garantía de reembolso de 30 días
+              </div>
+              <div className="mt-5 font-bold text-md">Este curso incluye:</div>
+              <ul className="ml-5 space-y-2 text-gray-600 list-disc">
+                <li>54 horas de vídeo bajo demanda</li>
+                <li>66 artículos</li>
+                <li>15 recursos descargables</li>
+                <li>Acceso en dispositivos móviles y TV</li>
+                <li>Acceso de por vida</li>
+                <li>Certificado de finalización</li>
+              </ul>
+              <div className="flex justify-between px-4 mt-2 font-bold underline">
+                <div>Compartir</div>
+                <div>Regalar este curso</div>
+              </div>
+              <div className="px-4 font-bold text-center underline">
+                Aplicar cupón
+              </div>
+            </div>
+          </div>
           <div className="flex justify-center w-full text-black">
-            <div className="flex flex-col justify-start w-4/5 m-6 mx-20 mt-10">
-              <div className="flex flex-col w-2/5 p-3 px-8 mb-6 mr-10 space-y-3 border border-gray-300 lg:w-2/3 border-spacing-5 border-3">
+            <div className="flex flex-col justify-start m-6 mx-6 mt-10 md:mx-20 md:w-4/5">
+              <div className="flex flex-col p-3 px-8 mb-6 space-y-3 border border-gray-300 md:mr-10 md:w-2/5 lg:w-2/3 border-spacing-5 border-3">
                 <div className="w-full text-2xl font-bold">
                   Lo que aprenderas
                 </div>
@@ -141,7 +216,7 @@ export default function IndividualCourse({ entry, session }) {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col w-2/5 p-3 px-8 mb-6 mr-10 space-y-3 text-gray-600 border border-gray-300 lg:w-2/3 border-spacing-5 border-3">
+              <div className="flex flex-col p-3 px-8 mb-6 space-y-3 text-gray-600 border border-gray-300 md:w-2/5 md:mr-10 lg:w-2/3 border-spacing-5 border-3">
                 <div className="w-full font-bold text-">
                   Las principales empresas ofrecen este curso a sus empleados.
                 </div>
@@ -177,6 +252,18 @@ export default function IndividualCourse({ entry, session }) {
           </div>
         </div>
         <Footer />
+        <PurchaseModal
+          isOpen={isPurchaseModalOpen}
+          onClose={closePurchaseModal}
+          course={entry}
+          session={session}
+        />
+        <RateModal
+          isOpen={isRatingModalOpen}
+          onClose={closeRatingModal}
+          course={entry}
+        />
+        <ToastContainer position="bottom-right" />
       </SessionProvider>
     </>
   );
