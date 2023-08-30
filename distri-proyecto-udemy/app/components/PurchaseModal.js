@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 const PurchaseModal = ({ isOpen, onClose, course }) => {
   const { data: session } = useSession();
