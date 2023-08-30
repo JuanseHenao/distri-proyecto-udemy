@@ -41,6 +41,7 @@ export async function getServerSideProps(context) {
 export default function IndividualCourse({ entry, session, reviews }) {
   const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
+  const [refreshData, setRefreshData] = useState(false);
 
   const buyCourse = () => {
     setIsPurchaseModalOpen(true);
@@ -105,6 +106,7 @@ export default function IndividualCourse({ entry, session, reviews }) {
                 buyCourse={buyCourse}
                 course={entry}
                 rateCourse={rateCourse}
+                refreshData={refreshData}
               />
               <div className="text-xs text-center">
                 Garantía de reembolso de 30 días
@@ -257,6 +259,8 @@ export default function IndividualCourse({ entry, session, reviews }) {
           onClose={closePurchaseModal}
           course={entry}
           session={session}
+          setRefreshData={setRefreshData}
+          refreshData={refreshData}
         />
         <RateModal
           isOpen={isRatingModalOpen}

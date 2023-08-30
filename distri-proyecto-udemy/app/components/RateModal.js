@@ -5,7 +5,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 
-const RateModal = ({ isOpen, onClose, course }) => {
+const RateModal = ({
+  isOpen,
+  onClose,
+  course,
+  refreshData,
+  setRefreshData,
+}) => {
   const [rating, setRating] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,11 +28,11 @@ const RateModal = ({ isOpen, onClose, course }) => {
       .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/reviews", datos, {
         headers: {
           "Content-Type": "application/json", // Tipo de contenido
-          "Access-Control-Allow-Origin": "http://localhost:3000", // Origen permitido (debe estar configurado en el servidor)
         },
       })
       .then((response) => {
         toast.success("Calificación realizada exitosamente");
+        setRefreshData(!refreshData);
         setIsLoading(false);
         onClose();
       })

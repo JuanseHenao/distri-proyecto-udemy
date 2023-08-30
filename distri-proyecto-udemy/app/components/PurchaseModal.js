@@ -5,7 +5,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 
-const PurchaseModal = ({ isOpen, onClose, course }) => {
+const PurchaseModal = ({
+  isOpen,
+  onClose,
+  course,
+  refreshData,
+  setRefreshData,
+}) => {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,12 +26,12 @@ const PurchaseModal = ({ isOpen, onClose, course }) => {
       .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/purchases", datos, {
         headers: {
           "Content-Type": "application/json", // Tipo de contenido
-          "Access-Control-Allow-Origin": "http://localhost:3000", // Origen permitido (debe estar configurado en el servidor)
         },
       })
       .then((response) => {
         toast.success("Compra realizada exitosamente");
         setIsLoading(false);
+        setRefreshData(!refreshData);
         onClose();
       })
       .catch((error) => {

@@ -4,7 +4,12 @@ import { useSession, signIn } from "next-auth/react";
 import axios from "axios";
 import { FaCheck } from "react-icons/fa";
 
-export default function ActionButtons({ buyCourse, course, rateCourse }) {
+export default function ActionButtons({
+  buyCourse,
+  course,
+  rateCourse,
+  refreshData,
+}) {
   const { data: session } = useSession();
 
   const [purchasesData, setPurchasesData] = useState([]);
@@ -49,7 +54,7 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
     if (session != null) {
       getData(session);
     }
-  }, [session]);
+  }, [session, refreshData]);
 
   const getData = async (sessionInfo) => {
     await axios
