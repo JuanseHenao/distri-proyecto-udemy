@@ -25,8 +25,6 @@ const PurchaseModal = ({ isOpen, onClose, course }) => {
       })
       .then((response) => {
         toast.success("Compra realizada exitosamente");
-        console.log("Compra");
-        console.log(response);
         setIsLoading(false);
         onClose();
       })

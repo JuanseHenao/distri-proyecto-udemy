@@ -14,20 +14,14 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
     {
       user_token: "1234567890",
       course_cms_id: "7vJhjZO9cjQejJRaRbrRfO",
-      price: 49.99,
-      purchase_date: "2023-08-27",
     },
     {
       user_token: "1234567890",
       course_cms_id: "valor_del_curso_2",
-      price: 29.99,
-      purchase_date: "2023-08-26",
     },
     {
       user_token: "1234567890",
       course_cms_id: "valor_del_curso_3",
-      price: 19.99,
-      purchase_date: "2023-08-25",
     },
   ];
 
@@ -51,7 +45,7 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
 
   useEffect(() => {
     setPurchasesData(ejemplo);
-    setPurchasesData(ejemplo2);
+    setAllUserReviews(ejemplo2);
     if (session != null) {
       getData(session);
     }
@@ -74,7 +68,7 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
         setPurchasesData(response.data);
       })
       .catch((error) => {
-        console.error("Error al obtener las calificaciones:", error);
+        console.error("Error al obtener las compras:", error);
       });
     // Get All User Reviews
     await axios
