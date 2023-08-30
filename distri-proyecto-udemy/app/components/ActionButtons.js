@@ -93,22 +93,12 @@ export default function ActionButtons({ buyCourse, course, rateCourse }) {
   };
 
   const hasCourse = () => {
-    console.log(
-      "hasCourse() " + session
-        ? purchasesData.some((item) => item.course_cms_id == course.sys.id)
-        : false
-    );
     return session
       ? purchasesData.some((item) => item.course_cms_id == course.sys.id)
       : false;
   };
 
   const hasRatedCourse = () => {
-    console.log(
-      "hasRatedCourse() " + session && hasCourse()
-        ? allUserReviews.some((item) => item.cms_id == course.sys.id)
-        : false
-    );
     return session && hasCourse()
       ? allUserReviews.some((item) => item.cms_id == course.sys.id)
       : false;

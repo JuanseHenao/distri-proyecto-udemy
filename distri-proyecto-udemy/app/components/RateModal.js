@@ -27,8 +27,6 @@ const RateModal = ({ isOpen, onClose, course }) => {
       })
       .then((response) => {
         toast.success("Calificación realizada exitosamente");
-        console.log("Calificación");
-        console.log(response);
         setIsLoading(false);
         onClose();
       })
@@ -38,10 +36,6 @@ const RateModal = ({ isOpen, onClose, course }) => {
         toast.error("Error realizando la calificación");
       });
   };
-
-  useEffect(() => {
-    console.log(rating);
-  }, [rating]);
 
   const ratingChanged = (newRating) => {
     setRating(newRating);
